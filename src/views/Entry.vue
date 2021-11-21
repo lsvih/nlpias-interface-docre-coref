@@ -260,10 +260,12 @@ export default {
                 this.predict = predict || []
                 if (label) {
                     this.text = JSON.parse(label)
+                    this.merged_vertex = this.text['merged_vertex']
                 }
             })
         },
         nextData: throttle(function () {
+            this.text['merged_vertex'] = this.merged_vertex
             this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, JSON.stringify(this.text)])
             if (this.idx === this.information.task.size - 1) {
                 this.$message.info('It\'s already the last data.')
