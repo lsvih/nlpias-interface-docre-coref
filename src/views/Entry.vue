@@ -235,7 +235,7 @@ export default {
         },
         initStyle() {
             let sheet = new CSSStyleSheet()
-            const entity_type = ['BLANK', 'ORG', 'LOC', 'TIME', 'PRE', 'NUM', 'MISC']
+            const entity_type = ['BLANK', 'ORG', 'LOC', 'TIME', 'PER', 'NUM', 'MISC']
             for (let i = 0; i < entity_type.length; i++) {
                 sheet.insertRule(`.${entity_type[i]}{ background-color: ${this.colors[i + 4]}}`, i)
                 sheet.insertRule(`.${entity_type[i]} .sup:hover{ filter: brightness(110%); z-index: 10;`, i)
