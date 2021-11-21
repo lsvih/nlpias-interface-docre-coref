@@ -101,7 +101,6 @@ export default {
             colors: [...schemeSet2, ...schemeSet3],
             shortcuts: [],
             labels: [],
-            span: [],
             merged_vertex: [],
             highlight_vertex: [],
             selected_vertex: -1,
@@ -259,11 +258,13 @@ export default {
                 [text, label, predict] = data
                 this.text = JSON.parse(text)
                 this.predict = predict || []
-                this.span = label || []
+                if (label) {
+                    this.text = JSON.parse(label)
+                }
             })
         },
         nextData: throttle(function () {
-            this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, this.span])
+            this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, this.text])
             if (this.idx === this.information.task.size - 1) {
                 this.$message.info('It\'s already the last data.')
                 return
@@ -282,14 +283,6 @@ export default {
                 this.getData(this.idx)
             } else if (label === 'Next') {
                 this.nextData()
-            } else {
-                let selector = window.getSelection().getRangeAt(0)
-                let start = Number(selector.startContainer.parentElement.dataset.pos)
-                let end = Number(selector.endContainer.parentElement.dataset.pos)
-                console.log([start, end])
-                this.span = [start, end]
-                this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, this.span])
-                window.getSelection().empty()
             }
         },
         deleteLabel() {
