@@ -264,7 +264,7 @@ export default {
             })
         },
         nextData: throttle(function () {
-            this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, this.text])
+            this.$eventBus.emit('labelData[Annotation]', [this.task_id, this.idx, JSON.stringify(this.text)])
             if (this.idx === this.information.task.size - 1) {
                 this.$message.info('It\'s already the last data.')
                 return
