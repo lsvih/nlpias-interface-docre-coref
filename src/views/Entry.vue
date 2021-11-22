@@ -257,7 +257,10 @@ export default {
                 let text, label, predict
                 [text, label, predict] = data
                 this.text = JSON.parse(text)
-                this.merged_vertex = []
+                if ('merged_vertex' in this.text)
+                    this.merged_vertex = this.text['merged_vertex']
+                else
+                    this.merged_vertex = []
                 this.predict = predict || []
                 if (label) {
                     this.text = JSON.parse(label)
