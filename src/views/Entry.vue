@@ -296,8 +296,21 @@ export default {
             this.selected_vertex = -1
         },
         reportId() {
+            let report_modal = this.$info({
+                title: '您遇到了什么问题？',
+                content: (
+                    <div>
+                        <p><a onClick={()=>{this.copyReport(1); report_modal.destroy()}}>① 原始分句错误</a></p>
+                        <p><a onClick={()=>{this.copyReport(2); report_modal.destroy()}}>② 对指代标注存疑</a></p>
+                        <p><a onClick={()=>{this.copyReport(3); report_modal.destroy()}}>③ 对共指合并存疑</a></p>
+                    </div>
+                ),
+                onCancel() {},
+            })
+        },
+        copyReport(reportId){
             let aux = document.createElement('input')
-            aux.setAttribute('value', this.text['id'])
+            aux.setAttribute('value', JSON.stringify({reportId, content: this.text, label: this.label}))
             document.body.appendChild(aux)
             aux.select()
             document.execCommand('copy')

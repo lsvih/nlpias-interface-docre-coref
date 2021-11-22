@@ -4,6 +4,12 @@ Template for building annotation interface of [nlpias](https://github.com/lsvih/
 
 ![Screenshot](/resources/screenshot.png)
 
+## New Feature
+
+Report Confusion:
+
+![Screenshot](/resources/screenshot-2.png)
+
 ## Debug config
 
 - Run `yarn serve`
