@@ -49,7 +49,7 @@
                 Delete<span class="shortcut"><backspace-icon style="width:21px;height: 21px;"/></span>
             </button>
             <button class="label" @click="resetLabel">
-                Reset</span>
+                Reset
             </button>
         </div>
         <div class="config-btn">
