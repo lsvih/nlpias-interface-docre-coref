@@ -284,14 +284,18 @@ export default {
             this.getData(this.idx)
             window.getSelection().empty()
         }, 1000),
+        previousData: throttle(function () {
+            if (this.idx === 0) { // prevent event while on first data
+                this.$message.info('It\'s already the first data.')
+                return
+            }
+            this.idx -= 1
+            this.getData(this.idx)
+            window.getSelection().empty()
+        }, 1000),
         handleLabel(label) {
             if (label === 'Previous') { // get previous data
-                if (this.idx === 0) { // prevent event while on first data
-                    this.$message.info('It\'s already the first data.')
-                    return
-                }
-                this.idx -= 1
-                this.getData(this.idx)
+                this.previousData()
             } else if (label === 'Next') {
                 this.nextData()
             }
