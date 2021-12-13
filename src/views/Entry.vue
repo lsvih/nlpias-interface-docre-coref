@@ -190,8 +190,8 @@ export default {
                             (end_pos > entity.pos[0] && end_pos < entity.pos[1])) {
                             console.log(this.text.sents[selete_sent_id].slice(start_pos, end_pos).join(' '))
                             console.log(entity, sent_id)
-                            this.$message.info('请不要嵌套标注！')
-                            return
+                            this.$message.info('您刚才进行了嵌套标注，显示可能有误，请以数据为准！')
+                            break
                         }
                     }
                     this.text.vertexSet[vertex].push({
